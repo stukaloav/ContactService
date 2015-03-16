@@ -11,10 +11,6 @@ public class Contact { private String firstName;
     private Set<Place> places;
     private Set<Contact> friends;
 
-    public Contact(){
-    }
-
-
     public void setHobby(Hobby hobby){
         if (hobbies == null){
             hobbies = new HashSet<Hobby>();
@@ -29,7 +25,10 @@ public class Contact { private String firstName;
         places.add(place);
     }
 
-    public void setFirstName(String firstName) {
+    public void setFirstName(String firstName){
+        if (firstName == null) {
+            throw new IllegalArgumentException("First name should not be null");
+        }
         this.firstName = firstName;
     }
 
