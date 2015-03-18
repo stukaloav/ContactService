@@ -1,6 +1,7 @@
 package home.skilllsUp.contactService.service;
 
 import home.skilllsUp.contactService.model.*;
+import home.skilllsUp.contactService.service.Impl.ContactServiceImpl;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -9,16 +10,15 @@ public class App {
         ApplicationContext context = new ClassPathXmlApplicationContext
                 ("SpringConfig.xml");
 
-        ContactService jcs = (ContactService)
-                context.getBean("javaContactService");
+        ContactServiceImpl jcs = (ContactServiceImpl) context.getBean("contactService");
         Contact contact1 = (Contact) context.getBean("contact1");
         Contact contact2 = (Contact) context.getBean("contact2");
         Place place1 = (Place) context.getBean("Dnepropetrovsk");
         Message message1 = (Message) context.getBean("message");
         Hobby hobby1 = (Hobby) context.getBean("hobby");
 
-        jcs.createContact(contact1.getFirstName(), contact1.getLastName(), contact1.getBirthDate());
-        jcs.createContact(contact2.getFirstName(), contact2.getLastName(), contact2.getBirthDate());
+        jcs.createContact(contact1.getFirstName(), contact1.getLastName());
+        jcs.createContact(contact2.getFirstName(), contact2.getLastName());
         Contact sasha = jcs.getContactByName(contact1.getFirstName(), contact1.getLastName());
         Contact luba = jcs.getContactByName(contact2.getFirstName(), contact2.getLastName());
 

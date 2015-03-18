@@ -3,6 +3,9 @@ package home.skilllsUp.contactService.service.Impl;
 import home.skilllsUp.contactService.dao.*;
 import home.skilllsUp.contactService.model.*;
 import home.skilllsUp.contactService.service.ContactService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.util.Collection;
@@ -10,19 +13,26 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+@Component
 public class ContactServiceImpl implements ContactService{
+    @Qualifier("hobbyDao")
+    @Autowired
     private HobbyDao hobbyDao;
+    @Qualifier("contactDao")
+    @Autowired
     private ContactDao contactDao;
+    @Qualifier("messageDao")
+    @Autowired
     private MessageDao messageDao;
+    @Qualifier("placeDao")
+    @Autowired
     private PlaceDao placeDao;
 
-
     @Override
-    public void createContact(String firstName, String lastName, LocalDate birthDate) {
+    public void createContact(String firstName, String lastName) {
         Contact contact = new Contact();
         contact.setFirstName(firstName);
         contact.setLastName(lastName);
-        contact.setBirthDate(birthDate);
         contactDao.addContact(contact);
     }
 

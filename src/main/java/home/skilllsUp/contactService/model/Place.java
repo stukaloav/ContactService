@@ -19,14 +19,27 @@ public class Place {
     }
 
     public void setTitle(String title) {
+        checkForNull(title);
         this.title = title;
     }
 
     public void setLongitude(double longitude) {
+        checkForNull(longitude);
+        if (longitude < 0){
+            throw new IllegalArgumentException("Longitude should not be negative");
+        }else if(longitude > 180){
+            throw new IllegalArgumentException("Longitude should not be more than 180 degrees");
+        }
         this.longitude = longitude;
     }
 
     public void setLatitude(double latitude) {
+        checkForNull(latitude);
+        if (latitude < 0){
+            throw new IllegalArgumentException("Latitude should not be negative");
+        }else if(latitude > 90){
+            throw new IllegalArgumentException("Latitude should not be more than 90 degrees");
+        }
         this.latitude = latitude;
     }
 
@@ -35,6 +48,7 @@ public class Place {
     }
 
     public void setDescription(String description) {
+        checkForNull(description);
         this.description = description;
     }
 
@@ -46,4 +60,11 @@ public class Place {
                 append(", " + latitude + "]");
         return strB.toString();
     }
+
+    private <T> void checkForNull(T t){
+        if (t == null){
+            throw new IllegalArgumentException("Argument should not be null");
+        }
+    }
+
 }

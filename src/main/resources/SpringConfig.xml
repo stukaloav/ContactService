@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-       <bean id="ContactService" class="home.skilllsUp.contactService.service.Impl.ContactServiceImpl">
+       <context:component-scan base-package="home.skilllsUp.contactService" />
+       <bean id="contactService" class="home.skilllsUp.contactService.service.Impl.ContactServiceImpl">
               <property name="contactDao" ref="contactDao"/>
               <property name="hobbyDao" ref="hobbyDao"/>
               <property name="messageDao" ref="messageDao"/>
               <property name="placeDao" ref="placeDao"/>
        </bean>
-
        <bean id="hobbyDao" class="home.skilllsUp.contactService.dao.Impl.HobbyDaoImpl"/>
        <bean id="contactDao" class="home.skilllsUp.contactService.dao.Impl.ContactDaoImpl"/>
        <bean id="messageDao" class="home.skilllsUp.contactService.dao.Impl.MessageDaoImpl"/>

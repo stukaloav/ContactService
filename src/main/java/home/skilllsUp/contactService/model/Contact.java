@@ -4,7 +4,8 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Contact { private String firstName;
+public class Contact {
+    private String firstName;
     private String lastName;
     private LocalDate birthDate;
     private Set<Hobby> hobbies;
@@ -12,6 +13,7 @@ public class Contact { private String firstName;
     private Set<Contact> friends;
 
     public void setHobby(Hobby hobby){
+        checkForNull(hobby);
         if (hobbies == null){
             hobbies = new HashSet<Hobby>();
         }
@@ -19,6 +21,7 @@ public class Contact { private String firstName;
     }
 
     public void setPlace(Place place){
+        checkForNull(place);
         if (places == null){
             places = new HashSet<Place>();
         }
@@ -26,17 +29,17 @@ public class Contact { private String firstName;
     }
 
     public void setFirstName(String firstName){
-        if (firstName == null) {
-            throw new IllegalArgumentException("First name should not be null");
-        }
+        checkForNull(firstName);
         this.firstName = firstName;
     }
 
     public void setLastName(String lastName) {
+        checkForNull(lastName);
         this.lastName = lastName;
     }
 
     public void setBirthDate(LocalDate birthDate) {
+        checkForNull(birthDate);
         this.birthDate = birthDate;
     }
 
@@ -65,6 +68,7 @@ public class Contact { private String firstName;
     }
 
     public void setFriend(Contact friend) {
+        checkForNull(friend);
         if (friends == null) {
             friends = new HashSet<Contact>();
         }
@@ -74,5 +78,11 @@ public class Contact { private String firstName;
     @Override
     public String toString(){
         return firstName + " " + lastName;
+    }
+
+    private <T> void checkForNull(T t){
+        if (t == null) {
+            throw new IllegalArgumentException("Argument should not be null");
+        }
     }
 }
