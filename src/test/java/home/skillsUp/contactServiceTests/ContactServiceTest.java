@@ -1,4 +1,4 @@
-package home.skilllsUp.contactService.service.tests;
+package home.skillsUp.contactServiceTests;
 
 import home.skilllsUp.contactService.dao.*;
 import home.skilllsUp.contactService.model.*;
@@ -109,22 +109,22 @@ public class ContactServiceTest {
         when(contactService.getContactByName("first name", "last name")).thenReturn(null);
         contactService.getContactByName("first name", "last name");
     }
-
-    public void getFriendListTest(){
-    }
-
-    public void getConversationTest(Contact first, Contact second){
-    }
-
-    public void getAllContactsTest(){
-
-    }
-
-    public void getAllHobbiesTest(){
-
-    }
-
-    public void getAllContactsWithHobbyTest(Hobby hobby){
-
-    }
+//
+//    public void getFriendListTest(){
+//    }
+//
+//    public void getConversationTest(Contact first, Contact second){
+//    }
+//
+//    public void getAllContactsTest(){
+//
+//    }
+//
+//    public void getAllHobbiesTest(){
+//
+//    }
+//
+//    public void getAllContactsWithHobbyTest(Hobby hobby){
+//
+//    }
 }

@@ -9,6 +9,7 @@ public class Hobby{
     }
 
     public void setTitle(String title) {
+        checkForNull(title);
         this.title = title;
     }
 
@@ -17,10 +18,17 @@ public class Hobby{
     }
 
     public void setDescription(String description) {
+        checkForNull(description);
         this.description = description;
     }
 
     public String toString(){
         return title;
+    }
+
+    private <T> void checkForNull(T t){
+        if (t == null){
+            throw new IllegalArgumentException("Argument should not be null");
+        }
     }
 }
