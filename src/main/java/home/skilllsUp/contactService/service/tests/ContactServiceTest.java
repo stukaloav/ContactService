@@ -45,17 +45,57 @@ public class ContactServiceTest {
         contactService.createContact("first name", "last name");
         verify(contactDao).addContact((Contact) anyObject());
     }
+    @Test(expected = IllegalArgumentException.class)
+    public void createContactTestForNullFirstArgument(){
+        contactService.createContact(null, "last name");
+    }
+    @Test(expected = IllegalArgumentException.class)
+    public void createContactTestForNullSecondArgument(){
+        contactService.createContact("first name", null);
+    }
 
     @Test
     public void addHobbyTest(){
         contactService.addHobby("title", "description");
         verify(hobbyDao).addHobby((Hobby) anyObject());
     }
+    @Test(expected = IllegalArgumentException.class)
+    public void addHobbyTestForNullFirstArgument(){
+        contactService.addHobby(null, "description");
+    }
+    @Test(expected = IllegalArgumentException.class)
+    public void addHobbyTestForNullSecondArgument(){
+        contactService.addHobby("title", null);
+    }
 
     @Test
     public void addPlaceTest(){
         contactService.addPlace("title", "description", 0.5, 1.25);
         verify(placeDao).addPlace((Place) anyObject());
+    }
+    @Test(expected = IllegalArgumentException.class)
+    public void addPlaceTestForNullFirstArgument(){
+        contactService.addPlace(null, "description", 0, 0);
+    }
+    @Test(expected = IllegalArgumentException.class)
+    public void addPlaceTestForNullSecondArgument(){
+        contactService.addPlace("title", null, 0, 0);
+    }
+    @Test(expected = IllegalArgumentException.class)
+    public void addPlaceTestForCorrectMinLongitude(){
+        contactService.addPlace("title", "description", -1, 0);
+    }
+    @Test(expected = IllegalArgumentException.class)
+    public void addPlaceTestForCorrectMaxLongitude(){
+        contactService.addPlace("title", "description", 181, 0);
+    }
+    @Test(expected = IllegalArgumentException.class)
+    public void addPlaceTestForCorrectMinLatitude(){
+        contactService.addPlace("title", "description", 0, -1);
+    }
+    @Test(expected = IllegalArgumentException.class)
+    public void addPlaceTestForCorrectMaxLatitude(){
+        contactService.addPlace("title", "description", 0, 91);
     }
 
     @Test
@@ -64,15 +104,16 @@ public class ContactServiceTest {
         verify(contactDao).addFriendship((Contact) anyObject(), (Contact) anyObject());
     }
 
-    public void getContactByNameTest(String firstName, String lastName){
+    @Test
+    public void getContactByNameTest(){
+        when(contactService.getContactByName("first name", "last name")).thenReturn(null);
+        contactService.getContactByName("first name", "last name");
     }
 
-    public void getFriendListTest(Contact contact){
-
+    public void getFriendListTest(){
     }
 
     public void getConversationTest(Contact first, Contact second){
-
     }
 
     public void getAllContactsTest(){

@@ -64,6 +64,9 @@ public class Contact {
     }
 
     public Set<Contact> getFriends() {
+        if (friends == null){
+            friends = new HashSet<Contact>();
+        }
         return friends;
     }
 
